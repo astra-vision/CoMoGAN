@@ -73,6 +73,9 @@ root
       ...
 ```
 
+## Pretrained weights
+We release a pretrained set of weights to allow reproducibility of our results. The weights are downloadable from [here](https://www.rocq.inria.fr/rits_files/computer-vision/comogan/logs_pretrained.tar.gz). Once downloaded, unpack the file in the root of the project and test them with the inference notebook.
+
 # Training
 The training routine of CoMoGAN is mainly based on the CycleGAN codebase, available with details in the official repository.
 
@@ -117,7 +120,7 @@ We expose command line arguments to encourage code reusability and adaptability 
 * `--decay_step_gamma`: Regulates how much to reduce the learning rate
 * `--seed`: Random seed initialization
 
-The codebase have been rewritten almost from scratch after CVPR acceptance and optimized for reproducibility, hence the seed provided could give slightly different results from the ones reported in the paper. We'll provide the weights of the model used for the results. (**coming soon**).
+The codebase have been rewritten almost from scratch after CVPR acceptance and optimized for reproducibility, hence the seed provided could give slightly different results from the ones reported in the paper.
 
 Changing model and dataset requires extending the `networks/base_model.py` and `data/base_dataset.py` class, respectively. Please look into CycleGAN repository for further instructions.
 
