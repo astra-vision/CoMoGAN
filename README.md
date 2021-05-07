@@ -6,7 +6,7 @@ Official repository.
 <img src="teaser.png" alt="CoMoGAN" width="500" />
 <img src="sample_result.gif" alt="CoMoGAN" width="500" />
 
-CoMoGAN: continuous model-guided image-to-image translation ([arXiv](http://arxiv.org/abs/2103.06879)) \
+CoMoGAN: continuous model-guided image-to-image translation \[[arXiv](http://arxiv.org/abs/2103.06879)\] | \[[supp](http://team.inria.fr/rits/files/2021/05/2021-comogan_supp.pdf)\] | \[[teaser](https://www.youtube.com/watch?v=x9fpJNPZgws)\] \
 [Fabio Pizzati](https://fabvio.github.io/), [Pietro Cerri](https://scholar.google.fr/citations?user=MEidJHwAAAAJ), [Raoul de Charette](https://team.inria.fr/rits/membres/raoul-de-charette/)  
 Inria, Vislab Ambarella. CVPR'21 (**oral**)
 
