@@ -41,7 +41,7 @@ conda activate comogan
 ```
 
 ### Dataset preparation
-First, download the Waymo Open Dataset from [the official website](https://waymo.com/open/). The dataset is organized in `.ftrecord` files, which we preprocess and split depending on metadata annotations on time of day.
+First, download the Waymo Open Dataset from [the official website](https://waymo.com/open/). The dataset is organized in `.tfrecord` files, which we preprocess and split depending on metadata annotations on time of day.
 Once you downloaded the dataset, you should run the `dump_waymo.py` script. It will read and unpack the `.tfrecord` files, also resizing the images for training. Please run
 
 ```
