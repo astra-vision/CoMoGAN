@@ -30,7 +30,7 @@ Tested with:
 
 
 ## Preparation
-The repository contains training and inference code for CoMo-MUNIT training on waymo open dataset. In the paper, we refer to this experiment as Day2Timelapse. All the models have been trained on a 32GB Tesla V100 GPU. We are working on a lighter version exploiting mixed precision training, to accomodate users with GPUs with less memory.
+The repository contains training and inference code for CoMo-MUNIT training on waymo open dataset. In the paper, we refer to this experiment as Day2Timelapse. All the models have been trained on a 32GB Tesla V100 GPU. We also provide a mixed precision training which should fit smaller GPUs as well (a usual training takes ~9GB).
 
 
 ### Environment setup
@@ -83,7 +83,12 @@ To launch a default training, run
 ```
 python train.py --path_data path/to/waymo/training/dir --gpus 0
 ```
-You can choose on which GPUs to train with the `--gpus` flag. Multi-GPU is not deeply tested but it should be managed internally by Pytorch Lightning. Typically, a full training requires 13GB+ of GPU memory. The code has been executed on a 32GB NVIDIA Tesla V100.
+You can choose on which GPUs to train with the `--gpus` flag. Multi-GPU is not deeply tested but it should be managed internally by Pytorch Lightning. Typically, a full training requires 13GB+ of GPU memory unless mixed precision is set. If you have a smaller GPU, please run
+
+```
+python train.py --path_data path/to/waymo/training/dir --gpus 0 --mixed_precision
+```
+Please note that performances on mixed precision trainings are evaluated only qualitatively.
 
 ### Experiment organization
 In the training routine, an unique ID will be assigned to every training. All experiments will be saved in the `logs` folder, which is structured in this way:
