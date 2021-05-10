@@ -471,8 +471,13 @@ class AdaptiveInstanceNorm2d(nn.Module):
     def forward(self, x):
         assert self.weight is not None and self.bias is not None, "Please assign weight and bias before calling AdaIN!"
         b, c = x.size(0), x.size(1)
-        running_mean = self.running_mean.repeat(b)
-        running_var = self.running_var.repeat(b)
+
+        if self.weight.type() == 'torch.cuda.HalfTensor':
+            running_mean = self.running_mean.repeat(b).to(torch.float16)
+            running_var = self.running_var.repeat(b).to(torch.float16)
+        else:
+            running_mean = self.running_mean.repeat(b)
+            running_var = self.running_var.repeat(b)
 
         # Apply instance norm
         x_reshaped = x.contiguous().view(1, b * c, *x.size()[2:])
@@ -698,3 +703,4 @@ class AdaINBlock(nn.Module):
 
     def forward(self, x):
         return self.model(x)
+

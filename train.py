@@ -34,8 +34,10 @@ def start(cmdline):
     else:
         root_dir = os.path.join('/tmp', generate_id())
 
-    trainer = pl.Trainer(default_root_dir=os.path.join(root_dir, 'checkpoints'),
-                         callbacks=callbacks, gpus=cmdline.gpus, logger=logger)
+    precision = 16 if cmdline.mixed_precision else 32
+
+    trainer = pl.Trainer(default_root_dir=os.path.join(root_dir, 'checkpoints'), callbacks=callbacks,
+                         gpus=cmdline.gpus, logger=logger, precision=precision, amp_level='01')
     trainer.fit(model, dataset)
 
 
@@ -52,4 +54,6 @@ if __name__ == '__main__':
     ap.add_argument('--decay_iters_step', default=200000, type=int, help='Decay iterations step')
     ap.add_argument('--decay_step_gamma', default=0.5, type=float, help='Decay step gamma')
     ap.add_argument('--seed', default=1, type=int, help='Random seed')
+    ap.add_argument('--mixed_precision', default=False, action='store_true', help='Use mixed precision to reduce memory usage')
     start(ap.parse_args())
+
