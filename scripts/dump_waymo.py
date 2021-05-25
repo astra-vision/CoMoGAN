@@ -29,7 +29,7 @@ def main(cmdline_opt):
         sunny_sequences = file.read().splitlines()
 
     for index_file, file in enumerate(files):
-        if not os.path.basename(file) in sunny_sequences: # Some sequences are wrongly annotated as sunny. We annotated a subset of really sunny images.
+        if not os.path.basename(file).split('_with_camera_labels.tfrecord')[0] in sunny_sequences: # Some sequences are wrongly annotated as sunny. We annotated a subset of really sunny images.
             continue
         dataset = tf.data.TFRecordDataset(file, compression_type='')
         printProgressBar(index_file, len(files), "Files done")
